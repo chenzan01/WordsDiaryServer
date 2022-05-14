@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface ICet4Dao {
     int queryWordsTotalAmount();
+
+    int queryWordsStudyAmount();
 }

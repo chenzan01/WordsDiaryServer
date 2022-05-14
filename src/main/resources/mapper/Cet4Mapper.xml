@@ -3,6 +3,10 @@
 <mapper namespace="com.zanchen.develop.wordsdiary.dao.ICet4Dao">
 
     <select id="queryWordsTotalAmount" resultType="java.lang.Integer" parameterType="com.zanchen.develop.wordsdiary.entity.Cet4">
-        SELECT count(*) from cet4;
+        SELECT count(*) FROM cet4;
+    </select>
+
+    <select id="queryWordsStudyAmount" resultType="java.lang.Integer" parameterType="com.zanchen.develop.wordsdiary.entity.Cet4">
+        SELECT count(*) FROM cet4 WHERE wordmemory IN(4);
     </select>
 </mapper>

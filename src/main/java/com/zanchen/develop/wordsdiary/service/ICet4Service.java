@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ICet4Service {
     int queryWordsTotalAmount();
+
+    int queryWordsStudyAmount();
 }

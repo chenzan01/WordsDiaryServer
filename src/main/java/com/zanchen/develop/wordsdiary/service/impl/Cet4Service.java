@@ -18,5 +18,10 @@ public class Cet4Service implements ICet4Service {
         return iCet4Dao.queryWordsTotalAmount();
     }
 
+    @Override
+    public int queryWordsStudyAmount() {
+        return iCet4Dao.queryWordsStudyAmount();
+    }
+
 
 }

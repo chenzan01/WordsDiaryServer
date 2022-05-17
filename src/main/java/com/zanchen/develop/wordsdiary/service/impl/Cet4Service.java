@@ -6,8 +6,6 @@ import com.zanchen.develop.wordsdiary.service.ICet4Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class Cet4Service implements ICet4Service {
     @Autowired

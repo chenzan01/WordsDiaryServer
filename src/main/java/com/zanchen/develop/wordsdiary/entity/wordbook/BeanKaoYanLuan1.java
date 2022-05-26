@@ -117,6 +117,7 @@ public class BeanKaoYanLuan1 {
 
                 private JsonObject sentence;
                 private String usphone;
+                private JsonObject antos;
                 private JsonObject syno;
                 private String ukphone;
                 private String ukspeech;
@@ -125,6 +126,7 @@ public class BeanKaoYanLuan1 {
                 private String phone;
                 private String speech;
                 private JsonObject relWord;
+                private JsonObject remMethod;
                 private String usspeech;
                 private List<JsonObject> trans;
 
@@ -142,6 +144,14 @@ public class BeanKaoYanLuan1 {
 
                 public void setUsphone(String usphone) {
                     this.usphone = usphone;
+                }
+
+                public JsonObject getAntos() {
+                    return antos;
+                }
+
+                public void setAntos(JsonObject antos) {
+                    this.antos = antos;
                 }
 
                 public JsonObject getSyno() {
@@ -208,6 +218,14 @@ public class BeanKaoYanLuan1 {
                     this.relWord = relWord;
                 }
 
+                public JsonObject getRemMethod(){
+                    return remMethod;
+                }
+
+                public void setRemMethod(JsonObject remMethod){
+                    this.remMethod = remMethod;
+                }
+
                 public String getUsspeech() {
                     return usspeech;
                 }
@@ -272,6 +290,48 @@ public class BeanKaoYanLuan1 {
 
                         public void setSentenceCn(String sCn) {
                             this.sentenceCn = sCn;
+                        }
+                    }
+                }
+
+                public static class AntosBean {
+                    /**
+                     * anto : [{"hwd":"different"}]
+                     * desc : 反义
+                     */
+
+                    private String desc;
+                    private List<JsonObject> anto;
+
+                    public String getDesc() {
+                        return desc;
+                    }
+
+                    public void setDesc(String desc) {
+                        this.desc = desc;
+                    }
+
+                    public List<JsonObject> getAnto() {
+                        return anto;
+                    }
+
+                    public void setAnto(List<JsonObject> anto) {
+                        this.anto = anto;
+                    }
+
+                    public static class AntoBean {
+                        /**
+                         * hwd : different
+                         */
+
+                        private String hwd;
+
+                        public String getHwd() {
+                            return hwd;
+                        }
+
+                        public void setHwd(String hwd) {
+                            this.hwd = hwd;
                         }
                     }
                 }
@@ -481,6 +541,28 @@ public class BeanKaoYanLuan1 {
                                 this.tran = tran;
                             }
                         }
+                    }
+                }
+
+                public static class RemMethodBean {
+
+                    private String val;
+                    private String desc;
+
+                    public String getVal() {
+                        return val;
+                    }
+
+                    public void setVal(String val) {
+                        this.val = val;
+                    }
+
+                    public String getDesc() {
+                        return desc;
+                    }
+
+                    public void setDesc(String desc) {
+                        this.desc = desc;
                     }
                 }
 

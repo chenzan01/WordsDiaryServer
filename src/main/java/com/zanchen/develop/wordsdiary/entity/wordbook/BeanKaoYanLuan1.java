@@ -73,7 +73,7 @@ public class BeanKaoYanLuan1 {
 
             private String wordHead;
             private String wordId;
-            private ContentBean content;
+            private JsonObject content;
 
             public String getWordHead() {
                 return wordHead;
@@ -91,11 +91,11 @@ public class BeanKaoYanLuan1 {
                 this.wordId = wordId;
             }
 
-            public ContentBean getContent() {
+            public JsonObject getContent() {
                 return content;
             }
 
-            public void setContent(ContentBean content) {
+            public void setContent(JsonObject content) {
                 this.content = content;
             }
 
@@ -115,24 +115,24 @@ public class BeanKaoYanLuan1 {
                  * trans : [{"tranCn":"完美的；完全的","descOther":"英释","pos":"adj","descCn":"中释","tranOther":"not having any mistakes, faults, or damage"},{"tranCn":"使完美","descOther":"英释","pos":"v","descCn":"中释","tranOther":"to make something as good as you are able to"}]
                  */
 
-                private SentenceBean sentence;
+                private JsonObject sentence;
                 private String usphone;
-                private SynoBean syno;
+                private JsonObject syno;
                 private String ukphone;
                 private String ukspeech;
                 private int star;
-                private PhraseBean phrase;
+                private JsonObject phrase;
                 private String phone;
                 private String speech;
-                private RelWordBean relWord;
+                private JsonObject relWord;
                 private String usspeech;
-                private List<TransBean> trans;
+                private List<JsonObject> trans;
 
-                public SentenceBean getSentence() {
+                public JsonObject getSentence() {
                     return sentence;
                 }
 
-                public void setSentence(SentenceBean sentence) {
+                public void setSentence(JsonObject sentence) {
                     this.sentence = sentence;
                 }
 
@@ -144,11 +144,11 @@ public class BeanKaoYanLuan1 {
                     this.usphone = usphone;
                 }
 
-                public SynoBean getSyno() {
+                public JsonObject getSyno() {
                     return syno;
                 }
 
-                public void setSyno(SynoBean syno) {
+                public void setSyno(JsonObject syno) {
                     this.syno = syno;
                 }
 
@@ -176,11 +176,11 @@ public class BeanKaoYanLuan1 {
                     this.star = star;
                 }
 
-                public PhraseBean getPhrase() {
+                public JsonObject getPhrase() {
                     return phrase;
                 }
 
-                public void setPhrase(PhraseBean phrase) {
+                public void setPhrase(JsonObject phrase) {
                     this.phrase = phrase;
                 }
 
@@ -200,11 +200,11 @@ public class BeanKaoYanLuan1 {
                     this.speech = speech;
                 }
 
-                public RelWordBean getRelWord() {
+                public JsonObject getRelWord() {
                     return relWord;
                 }
 
-                public void setRelWord(RelWordBean relWord) {
+                public void setRelWord(JsonObject relWord) {
                     this.relWord = relWord;
                 }
 
@@ -216,11 +216,11 @@ public class BeanKaoYanLuan1 {
                     this.usspeech = usspeech;
                 }
 
-                public List<TransBean> getTrans() {
+                public List<JsonObject> getTrans() {
                     return trans;
                 }
 
-                public void setTrans(List<TransBean> trans) {
+                public void setTrans(List<JsonObject> trans) {
                     this.trans = trans;
                 }
 
@@ -231,7 +231,7 @@ public class BeanKaoYanLuan1 {
                      */
 
                     private String desc;
-                    private List<SentencesBean> sentences;
+                    private List<JsonObject> sentences;
 
                     public String getDesc() {
                         return desc;
@@ -241,11 +241,11 @@ public class BeanKaoYanLuan1 {
                         this.desc = desc;
                     }
 
-                    public List<SentencesBean> getSentences() {
+                    public List<JsonObject> getSentences() {
                         return sentences;
                     }
 
-                    public void setSentences(List<SentencesBean> sentences) {
+                    public void setSentences(List<JsonObject> sentences) {
                         this.sentences = sentences;
                     }
 
@@ -255,23 +255,23 @@ public class BeanKaoYanLuan1 {
                          * sCn : 他的英语很地道。
                          */
 
-                        private String sContent;
-                        private String sCn;
+                        private String sentenceContent;
+                        private String sentenceCn;
 
-                        public String getSContent() {
-                            return sContent;
+                        public String getSentenceContent() {
+                            return sentenceContent;
                         }
 
-                        public void setSContent(String sContent) {
-                            this.sContent = sContent;
+                        public void setSentenceContent(String sContent) {
+                            this.sentenceContent = sContent;
                         }
 
-                        public String getSCn() {
-                            return sCn;
+                        public String getSentenceCn() {
+                            return sentenceCn;
                         }
 
-                        public void setSCn(String sCn) {
-                            this.sCn = sCn;
+                        public void setSentenceCn(String sCn) {
+                            this.sentenceCn = sCn;
                         }
                     }
                 }
@@ -283,7 +283,7 @@ public class BeanKaoYanLuan1 {
                      */
 
                     private String desc;
-                    private List<SynosBean> synos;
+                    private List<JsonObject> synos;
 
                     public String getDesc() {
                         return desc;
@@ -293,11 +293,11 @@ public class BeanKaoYanLuan1 {
                         this.desc = desc;
                     }
 
-                    public List<SynosBean> getSynos() {
+                    public List<JsonObject> getSynos() {
                         return synos;
                     }
 
-                    public void setSynos(List<SynosBean> synos) {
+                    public void setSynos(List<JsonObject> synos) {
                         this.synos = synos;
                     }
 
@@ -310,7 +310,7 @@ public class BeanKaoYanLuan1 {
 
                         private String pos;
                         private String tran;
-                        private List<HwdsBean> hwds;
+                        private List<JsonObject> hwds;
 
                         public String getPos() {
                             return pos;
@@ -328,11 +328,11 @@ public class BeanKaoYanLuan1 {
                             this.tran = tran;
                         }
 
-                        public List<HwdsBean> getHwds() {
+                        public List<JsonObject> getHwds() {
                             return hwds;
                         }
 
-                        public void setHwds(List<HwdsBean> hwds) {
+                        public void setHwds(List<JsonObject> hwds) {
                             this.hwds = hwds;
                         }
 
@@ -361,7 +361,7 @@ public class BeanKaoYanLuan1 {
                      */
 
                     private String desc;
-                    private List<PhrasesBean> phrases;
+                    private List<JsonObject> phrases;
 
                     public String getDesc() {
                         return desc;
@@ -371,11 +371,11 @@ public class BeanKaoYanLuan1 {
                         this.desc = desc;
                     }
 
-                    public List<PhrasesBean> getPhrases() {
+                    public List<JsonObject> getPhrases() {
                         return phrases;
                     }
 
-                    public void setPhrases(List<PhrasesBean> phrases) {
+                    public void setPhrases(List<JsonObject> phrases) {
                         this.phrases = phrases;
                     }
 
@@ -385,23 +385,23 @@ public class BeanKaoYanLuan1 {
                          * pCn : 精通；熟练；完全掌握
                          */
 
-                        private String pContent;
-                        private String pCn;
+                        private String phraseContent;
+                        private String phraseCn;
 
-                        public String getPContent() {
-                            return pContent;
+                        public String getPhraseContent() {
+                            return phraseContent;
                         }
 
-                        public void setPContent(String pContent) {
-                            this.pContent = pContent;
+                        public void setPhraseContent(String pContent) {
+                            this.phraseContent = pContent;
                         }
 
-                        public String getPCn() {
-                            return pCn;
+                        public String getPhraseCn() {
+                            return phraseCn;
                         }
 
-                        public void setPCn(String pCn) {
-                            this.pCn = pCn;
+                        public void setPhraseCn(String pCn) {
+                            this.phraseCn = pCn;
                         }
                     }
                 }
@@ -413,7 +413,7 @@ public class BeanKaoYanLuan1 {
                      */
 
                     private String desc;
-                    private List<RelsBean> rels;
+                    private List<JsonObject> rels;
 
                     public String getDesc() {
                         return desc;
@@ -423,11 +423,11 @@ public class BeanKaoYanLuan1 {
                         this.desc = desc;
                     }
 
-                    public List<RelsBean> getRels() {
+                    public List<JsonObject> getRels() {
                         return rels;
                     }
 
-                    public void setRels(List<RelsBean> rels) {
+                    public void setRels(List<JsonObject> rels) {
                         this.rels = rels;
                     }
 
@@ -438,7 +438,7 @@ public class BeanKaoYanLuan1 {
                          */
 
                         private String pos;
-                        private List<WordsBean> words;
+                        private List<JsonObject> words;
 
                         public String getPos() {
                             return pos;
@@ -448,11 +448,11 @@ public class BeanKaoYanLuan1 {
                             this.pos = pos;
                         }
 
-                        public List<WordsBean> getWords() {
+                        public List<JsonObject> getWords() {
                             return words;
                         }
 
-                        public void setWords(List<WordsBean> words) {
+                        public void setWords(List<JsonObject> words) {
                             this.words = words;
                         }
 

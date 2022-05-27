@@ -2,30 +2,49 @@ package com.zanchen.develop.wordsdiary.util;
 
 import com.google.gson.*;
 import com.zanchen.develop.wordsdiary.entity.wordbook.BeanKaoYanLuan1;
+
+import javax.sql.DataSource;
 import java.io.*;
+import java.sql.*;
 import java.util.List;
 
 public class JsonParserUtil {
     public JsonParserUtil() {
         try {
             readFileByLine();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
     }
+    //连接数据库
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost:3306/wordsdiary?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8";
+    private static final String user = "chenzan";
+    private static final String password = "123456";
 
-    private void readFileByLine() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("D:\\JavaProject\\WordsDiaryServer\\wordbooks\\KaoYanluan_1.json"));
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private ResultSet resultSet;
+    int i = -1;
+
+    private void readFileByLine() throws IOException, ClassNotFoundException,
+            IllegalAccessException, InstantiationException, SQLException {
+        BufferedReader bufferedReader = new BufferedReader(
+                new FileReader("D:\\JavaProject\\WordsDiaryServer\\wordbooks\\KaoYanluan_1.json"));
         String line;
         JsonParser parser = new JsonParser();
+        Class.forName(driver).newInstance();
+        connection = DriverManager.getConnection(url,user,password);
+
         while ((line = bufferedReader.readLine()) != null){
             JsonObject jsonObject = (JsonObject) parser.parse(line);
             getAllWordInfo(jsonObject);
+            i++;
         }
         bufferedReader.close();
     }
 
-    private void getAllWordInfo(JsonObject jsonObject){
+    private void getAllWordInfo(JsonObject jsonObject) throws SQLException {
 
         //最外层，有四个属性,四个属性均不会为空
         //1、wordRank 单词序号
@@ -186,7 +205,6 @@ public class JsonParserUtil {
                 String string = gson.toJson(antosBean.getAnto());
                 JsonArray jsonArray = gson.fromJson(string,JsonArray.class);
                 JsonObject anto = jsonArray.get(i).getAsJsonObject();
-
                 if(anto.has("hwd")){
                     antoBean.setHwd(anto.get("hwd").getAsString());
                 }
@@ -332,6 +350,36 @@ public class JsonParserUtil {
             }
 
         }
+
+        //插入所有字符串
+//        String sql = "INSERT INTO kaoyanluan1 SET "
+//                +"wordRank = '" + beanKaoYanLuan1.getWordRank()
+//                +"',wordId = '" + wordBean.getWordId()
+//                +"',bookId = '" + beanKaoYanLuan1.getBookId()
+//                +"',headWord = '" + beanKaoYanLuan1.getHeadWord()
+//                +"',wordHead = '" + wordBean.getWordHead()
+//                +"',star = '" + contentBean.getStar()
+//                +"',phone = '" + contentBean.getPhone().replace("'","/")
+//                +"',speech = '" + contentBean.getSpeech().replace("'","/")
+//                +"',USphone = '" + contentBean.getUsphone().replace("'","/")
+//                +"',USspeech = '" + contentBean.getUsspeech().replace("'","/")
+//                +"',UKphone = '" + contentBean.getUkphone().replace("'","/")
+//                +"',UKspeech = '" + contentBean.getUkspeech().replace("'","/")
+//                +"',sentences = '" + contentBean.getSentence().toString().replace("'","/")
+//                +"',anto = '" + contentBean.getAntos().toString()
+//                +"',synos = '" + contentBean.getSyno().toString()
+//                +"',phrases = '" + contentBean.getPhrase().toString()
+//                +"',remMethod = '" + contentBean.getRemMethod().toString()
+//                +"',rels = '" + contentBean.getRelWord().toString()
+//                +"',trans = '" + contentBean.getTrans().toString().replace("'","/")
+//                + "';";
+//        preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.execute();
+
+        //更新
+//        String sql = "UPDATE kaoyanluan1 SET remMethod = '" + remMethodBean.getVal().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+//        preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.execute();
     }
 
 }

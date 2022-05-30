@@ -3,7 +3,6 @@ package com.zanchen.develop.wordsdiary.util;
 import com.google.gson.*;
 import com.zanchen.develop.wordsdiary.entity.wordbook.BeanKaoYanLuan1;
 
-import javax.sql.DataSource;
 import java.io.*;
 import java.sql.*;
 import java.util.List;
@@ -24,13 +23,12 @@ public class JsonParserUtil {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
-    int i = -1;
+    int i = 1;
 
     private void readFileByLine() throws IOException, ClassNotFoundException,
             IllegalAccessException, InstantiationException, SQLException {
         BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("D:\\JavaProject\\WordsDiaryServer\\wordbooks\\KaoYanluan_1.json"));
+                new FileReader("D:\\JavaProject\\WordsDiaryServer\\wordbooks\\IELTS_3.json"));
         String line;
         JsonParser parser = new JsonParser();
         Class.forName(driver).newInstance();
@@ -42,6 +40,7 @@ public class JsonParserUtil {
             i++;
         }
         bufferedReader.close();
+        System.out.println("Finish!");
     }
 
     private void getAllWordInfo(JsonObject jsonObject) throws SQLException {
@@ -82,21 +81,45 @@ public class JsonParserUtil {
         }
         if(wordBean.getContent().has("phone")){
             contentBean.setPhone(wordBean.getContent().get("phone").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET phone = '" + contentBean.getPhone().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("speech")){
             contentBean.setSpeech(wordBean.getContent().get("speech").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET speech = '" + contentBean.getSpeech().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("usphone")){
             contentBean.setUsphone(wordBean.getContent().get("usphone").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET Usphone = '" + contentBean.getUsphone().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("ukphone")){
             contentBean.setUkphone(wordBean.getContent().get("ukphone").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET Ukphone = '" + contentBean.getUkphone().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("usspeech")){
             contentBean.setUsspeech(wordBean.getContent().get("usspeech").getAsString());
+            //插入数据库g
+            String sql = "UPDATE ielts3 SET USspeech = '" + contentBean.getUsspeech().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("ukspeech")){
             contentBean.setUkspeech(wordBean.getContent().get("ukspeech").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET Ukspeech = '" + contentBean.getUkspeech().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
         if(wordBean.getContent().has("sentence")){
             contentBean.setSentence(wordBean.getContent().get("sentence").getAsJsonObject());
@@ -161,6 +184,11 @@ public class JsonParserUtil {
             JsonArray jsonArray = contentBean.getSentence().get("sentences").getAsJsonArray();
             sentenceBean.setSentences(new Gson().fromJson(jsonArray, List.class));
             sentenceBean.setDesc(contentBean.getSentence().get("desc").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET sentences = '" + sentenceBean.getSentences().toString().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
+
         }
 
         //sentences
@@ -194,6 +222,10 @@ public class JsonParserUtil {
             JsonArray jsonArray = contentBean.getAntos().get("anto").getAsJsonArray();
             antosBean.setAnto(new Gson().fromJson(jsonArray,List.class));
             antosBean.setDesc(contentBean.getAntos().get("desc").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET anto = '" + antosBean.getAnto().toString().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
 
         //anto
@@ -221,6 +253,10 @@ public class JsonParserUtil {
             JsonArray jsonArray = contentBean.getSyno().get("synos").getAsJsonArray();
             synoBean.setSynos(new Gson().fromJson(jsonArray,List.class));
             synoBean.setDesc(contentBean.getSyno().get("desc").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET synos = '" + synoBean.getSynos().toString().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
 
         //synos
@@ -273,6 +309,10 @@ public class JsonParserUtil {
             JsonArray jsonArray = contentBean.getPhrase().get("phrases").getAsJsonArray();
             phraseBean.setPhrases(new Gson().fromJson(jsonArray,List.class));
             phraseBean.setDesc(contentBean.getPhrase().get("desc").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET phrases = '" + phraseBean.getPhrases().toString().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
 
         //phrases
@@ -299,6 +339,10 @@ public class JsonParserUtil {
         if(contentBean.getRemMethod() != null){
             if(contentBean.getRemMethod().has("val")){
                 remMethodBean.setVal(contentBean.getRemMethod().get("val").getAsString());
+                //插入数据库
+                String sql = "UPDATE ielts3 SET remMethod = '" + remMethodBean.getVal().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.execute();
             }
             if(contentBean.getRemMethod().has("desc")){
                 remMethodBean.setDesc(contentBean.getRemMethod().get("desc").getAsString());
@@ -314,6 +358,10 @@ public class JsonParserUtil {
             JsonArray jsonArray = contentBean.getRelWord().get("rels").getAsJsonArray();
             relWordBean.setRels(new Gson().fromJson(jsonArray,List.class));
             relWordBean.setDesc(contentBean.getRelWord().get("desc").getAsString());
+            //插入数据库
+            String sql = "UPDATE ielts3 SET rels = '" + relWordBean.getRels().toString().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
         }
 
         //rels
@@ -322,17 +370,17 @@ public class JsonParserUtil {
         //
         BeanKaoYanLuan1.ContentBeanX.WordBean.ContentBean.RelWordBean.RelsBean relsBean =
                 new BeanKaoYanLuan1.ContentBeanX.WordBean.ContentBean.RelWordBean.RelsBean();
-        if(relWordBean.getRels() != null){
-            for(int i = 0; i < relWordBean.getRels().size(); i++){
-                Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
-                String string = gson.toJson(relWordBean.getRels());
-                JsonArray jsonArray = gson.fromJson(string,JsonArray.class);
-                JsonObject rels = jsonArray.get(i).getAsJsonObject();
-                relsBean.setPos(rels.get("pos").getAsString());
-                JsonArray words = rels.get("words").getAsJsonArray();
-                relsBean.setWords(new Gson().fromJson(words,List.class));
-            }
-        }
+//        if(relWordBean.getRels() != null){
+//            for(int i = 0; i < relWordBean.getRels().size(); i++){
+//                Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+//                String string = gson.toJson(relWordBean.getRels());
+//                JsonArray jsonArray = gson.fromJson(string,JsonArray.class);
+//                JsonObject rels = jsonArray.get(i).getAsJsonObject();
+//                relsBean.setPos(rels.get("pos").getAsString());
+//                JsonArray words = rels.get("words").getAsJsonArray();
+//                relsBean.setWords(new Gson().fromJson(words,List.class));
+//            }
+//        }
 
         //words
         //
@@ -340,46 +388,30 @@ public class JsonParserUtil {
         BeanKaoYanLuan1.ContentBeanX.WordBean.ContentBean.RelWordBean.RelsBean.WordsBean wordsBean =
                 new BeanKaoYanLuan1.ContentBeanX.WordBean.ContentBean.RelWordBean.RelsBean.WordsBean();
         if(relsBean.getWords() != null){
-            for(int i = 0; i < relsBean.getWords().size(); i++){
-                Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
-                String string = gson.toJson(relsBean.getWords());
-                JsonArray jsonArray = gson.fromJson(string,JsonArray.class);
-                JsonObject words = jsonArray.get(i).getAsJsonObject();
-                wordsBean.setHwd(words.get("hwd").getAsString());
-                wordsBean.setTran(words.get("tran").getAsString());
-            }
+//            for(int i = 0; i < relsBean.getWords().size(); i++){
+//                Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+//                String string = gson.toJson(relsBean.getWords());
+//                JsonArray jsonArray = gson.fromJson(string,JsonArray.class);
+//                JsonObject words = jsonArray.get(i).getAsJsonObject();
+//                wordsBean.setHwd(words.get("hwd").getAsString());
+//                wordsBean.setTran(words.get("tran").getAsString());
+//            }
 
         }
 
-        //插入所有字符串
-//        String sql = "INSERT INTO kaoyanluan1 SET "
+        //插入所有基础字符串
+//        String sql = "INSERT INTO beishigaozhong9 SET "
 //                +"wordRank = '" + beanKaoYanLuan1.getWordRank()
-//                +"',wordId = '" + wordBean.getWordId()
-//                +"',bookId = '" + beanKaoYanLuan1.getBookId()
-//                +"',headWord = '" + beanKaoYanLuan1.getHeadWord()
-//                +"',wordHead = '" + wordBean.getWordHead()
+//                +"',wordId = '" + wordBean.getWordId().replace("'","/")
+//                +"',bookId = '" + beanKaoYanLuan1.getBookId().replace("'","/")
+//                +"',headWord = '" + beanKaoYanLuan1.getHeadWord().replace("'","/")
+//                +"',wordHead = '" + wordBean.getWordHead().replace("'","/")
 //                +"',star = '" + contentBean.getStar()
-//                +"',phone = '" + contentBean.getPhone().replace("'","/")
-//                +"',speech = '" + contentBean.getSpeech().replace("'","/")
-//                +"',USphone = '" + contentBean.getUsphone().replace("'","/")
-//                +"',USspeech = '" + contentBean.getUsspeech().replace("'","/")
-//                +"',UKphone = '" + contentBean.getUkphone().replace("'","/")
-//                +"',UKspeech = '" + contentBean.getUkspeech().replace("'","/")
-//                +"',sentences = '" + contentBean.getSentence().toString().replace("'","/")
-//                +"',anto = '" + contentBean.getAntos().toString()
-//                +"',synos = '" + contentBean.getSyno().toString()
-//                +"',phrases = '" + contentBean.getPhrase().toString()
-//                +"',remMethod = '" + contentBean.getRemMethod().toString()
-//                +"',rels = '" + contentBean.getRelWord().toString()
 //                +"',trans = '" + contentBean.getTrans().toString().replace("'","/")
 //                + "';";
 //        preparedStatement = connection.prepareStatement(sql);
 //        preparedStatement.execute();
 
-        //更新
-//        String sql = "UPDATE kaoyanluan1 SET remMethod = '" + remMethodBean.getVal().replace("'","/") + "' WHERE wordRank = '" + i + " ';";
-//        preparedStatement = connection.prepareStatement(sql);
-//        preparedStatement.execute();
     }
 
 }

@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/wordsdiary?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
-    username: chenzan
+    url: jdbc:mysql://124.221.161.247:3306/wordsdiary?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: wordsdiary
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 

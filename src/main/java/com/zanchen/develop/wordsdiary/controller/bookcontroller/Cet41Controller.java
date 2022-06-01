@@ -1,23 +1,23 @@
-package com.zanchen.develop.wordsdiary.controller;
+package com.zanchen.develop.wordsdiary.controller.bookcontroller;
 
-import com.zanchen.develop.wordsdiary.service.ICet4Service;
+import com.zanchen.develop.wordsdiary.service.bookservice.ICet41Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/cet4")
-public class Cet4Controller {
+public class Cet41Controller {
     @Autowired
-    private ICet4Service iCet4Service;
+    private ICet41Service iCet41Service;
 
     @RequestMapping(value = "/queryWordsTotalAmount",method = RequestMethod.POST)
     private int queryWordsTotalAmount(){
-        return iCet4Service.queryWordsTotalAmount();
+        return iCet41Service.queryWordsTotalAmount();
     }
 
     @RequestMapping(value = "/queryWordsStudyAmount",method = RequestMethod.POST)
     private int queryWordsStudyAmount(){
-        return iCet4Service.queryWordsStudyAmount();
+        return iCet41Service.queryWordsStudyAmount();
     }
 
 }

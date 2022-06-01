@@ -1,9 +1,9 @@
-package com.zanchen.develop.wordsdiary.dao;
+package com.zanchen.develop.wordsdiary.dao.bookdao;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ICet4Dao {
+public interface ICet41Dao {
     int queryWordsTotalAmount();
 
     int queryWordsStudyAmount();

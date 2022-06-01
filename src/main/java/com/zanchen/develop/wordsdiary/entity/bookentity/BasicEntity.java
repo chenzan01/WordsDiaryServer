@@ -1,10 +1,10 @@
-package com.zanchen.develop.wordsdiary.entity.wordbook;
+package com.zanchen.develop.wordsdiary.entity.bookentity;
 
 import com.google.gson.JsonObject;
 
 import java.util.List;
 
-public class BeanKaoYanLuan1 {
+public class BasicEntity {
     /**
      * wordRank : 69
      * headWord : perfect

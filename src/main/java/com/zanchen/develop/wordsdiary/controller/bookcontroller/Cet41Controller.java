@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/cet4")
+@RequestMapping(value = "/cet41")
 public class Cet41Controller {
     @Autowired
     private ICet41Service iCet41Service;

@@ -13,9 +13,7 @@ public class WordsdiaryApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(WordsdiaryApplication.class, args);
-
-
-        new JsonParserUtil();
+//        new JsonParserUtil();
     }
 
 }
